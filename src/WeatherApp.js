@@ -32,15 +32,11 @@ function WeatherApp() {
         .then(result => {
           setWeather(result);
           setCity('');
-          console.log(result); //TODO remove this line 
       })
 
       if(weather.cod == "200") {
         let newList = addCityToList(weather)
         setLastSearchList(newList)
-        console.log(lastSearchList) //TODO remove this line
-      } else {
-        console.log("lastSearchList NOT 200: "+weather.cod) //TODO remove this line
       }
     }
   }
@@ -57,16 +53,15 @@ function WeatherApp() {
 
   return (
     <div className={classes.page}>
-        <TextField
-          className={classes.inputField}
-          id = "input-city-field"
-          variant = "outlined"
-          label="Enter city..."
-          onChange = {e => setCity(e.target.value)}
-          value = {city}
-          onKeyPress = {searchCityWeather}
-          />
-      <WeatherInformation weather={weather} lastSearchList={lastSearchList}/>
+      <TextField
+        className={classes.inputField}
+        variant = "outlined"
+        label="Enter city..."
+        onChange = {e => setCity(e.target.value)}
+        value = {city}
+        onKeyPress = {searchCityWeather}
+      />
+      <WeatherInformation weather={weather}/>
       <PreviousSearch lastSearchList={lastSearchList}/>
     </div>
   );
